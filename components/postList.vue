@@ -14,11 +14,11 @@
       >
         <h3>Post {{ post.id }}</h3>
         <div class="flex flex-col gap-1">
-          <span v-if="postList.indexOf(post) !== 0" @click="() => movePost(post.id, 'up')"
+          <span v-if="postListOrdered.indexOf(post) !== 0" @click="() => movePost(post.id, 'up')"
             >move up</span
           >
           <span
-            v-if="postList.indexOf(post) !== postList.length - 1"
+            v-if="postListOrdered.indexOf(post) !== postListOrdered.length - 1"
             @click="() => movePost(post.id, 'down')"
             >move down</span
           >
@@ -32,8 +32,6 @@
 import type { Post } from '~/@types'
 import { removeUndefined } from '~/@utils'
 import { usePostActivityStore } from '~/store'
-
-const postList = ref<Post[]>([])
 
 const store = usePostActivityStore()
 
@@ -52,22 +50,22 @@ watch(fetchedPostList, (fetchedPostList) => {
   }
   const initialPostListOrder = fetchedPostList.map((post) => post.id)
   store.addPostIdListOrderToHistory(initialPostListOrder)
-  postList.value = fetchedPostList
 })
 
 // compute posts based on latestPostListOrder
 const postListOrdered = computed(() => {
-  if (!store.latestPostIdListOrder || postList.value.length === 0) {
+  const posts = fetchedPostList.value
+  if (!store.latestPostIdListOrder || !posts || posts.length === 0) {
     return []
   }
 
   return store.latestPostIdListOrder
     .map((id) => {
-      const postIndex = postList.value.findIndex((post) => post.id === id)
+      const postIndex = posts.findIndex((post) => post.id === id)
       if (postIndex === -1) {
         return undefined
       }
-      return postList.value[postIndex]
+      return posts[postIndex]
     })
     .filter(removeUndefined)
 })
