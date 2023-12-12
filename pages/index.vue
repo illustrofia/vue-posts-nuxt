@@ -1,5 +1,7 @@
 <template>
-  <div>
-    <h1>Hello world!</h1>
+  <div class="min-h-screen w-screen">
+    <div class="flex justify-between p-10">
+      <PostList />
+    </div>
   </div>
 </template>
