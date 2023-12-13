@@ -6,14 +6,27 @@
 
     <span v-if="error">Error when loading posts: {{ error.message }}</span>
 
-    <ul v-if="!pending && !error" class="flex flex-col gap-4">
+    <TransitionGroup
+      v-if="!pending && !error"
+      tag="ul"
+      name="post-list"
+      class="flex flex-col gap-4"
+    >
       <li
         v-for="post in postListOrdered"
         :key="post.id"
-        class="flex justify-between py-4 px-2 w-64 items-center h-16"
+        class="flex justify-between py-2 px-2 w-72 items-center h-16 shadow-md hover:shadow-lg transition-all border border-slate-200 rounded"
       >
-        <h3 class="font-thin">Post {{ post.id }}</h3>
-        <div class="flex flex-col justify-between h-full">
+        <h3 class="font-thin text-sm">Post {{ post.id }}</h3>
+        <div
+          class="flex flex-col h-full"
+          :class="
+            postListOrdered.indexOf(post) !== 0 &&
+            postListOrdered.indexOf(post) !== postListOrdered.length - 1
+              ? 'justify-between'
+              : 'justify-center'
+          "
+        >
           <span
             v-if="postListOrdered.indexOf(post) !== 0"
             class="p-1 cursor-pointer"
@@ -31,7 +44,7 @@
           </span>
         </div>
       </li>
-    </ul>
+    </TransitionGroup>
   </div>
 </template>
 
