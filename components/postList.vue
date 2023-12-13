@@ -49,7 +49,7 @@ watch(fetchedPostList, (fetchedPostList) => {
     return
   }
   const initialPostListOrder = fetchedPostList.map((post) => post.id)
-  store.addPostIdListOrderToHistory(initialPostListOrder)
+  store.addPostIdListOrderToHistory(0, initialPostListOrder)
 })
 
 // compute posts based on latestPostListOrder
@@ -70,20 +70,20 @@ const postListOrdered = computed(() => {
     .filter(removeUndefined)
 })
 
-const movePost = (id: number, direction: 'up' | 'down') => {
+const movePost = (postId: number, direction: 'up' | 'down') => {
   if (!store.latestPostIdListOrder) {
     return
   }
 
-  const index = postListOrdered.value.findIndex((post) => post.id === id)
+  const index = postListOrdered.value.findIndex((post) => post.id === postId)
   if (index === -1) {
     return
   }
 
   const newPostIdListOrder = [...store.latestPostIdListOrder]
   newPostIdListOrder.splice(index, 1)
-  newPostIdListOrder.splice(direction === 'up' ? index - 1 : index + 1, 0, id)
+  newPostIdListOrder.splice(direction === 'up' ? index - 1 : index + 1, 0, postId)
 
-  store.addPostIdListOrderToHistory(newPostIdListOrder)
+  store.addPostIdListOrderToHistory(postId, newPostIdListOrder)
 }
 </script>

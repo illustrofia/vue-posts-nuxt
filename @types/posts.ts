@@ -6,3 +6,15 @@ export interface Post {
 }
 
 export type PostListOrder = number[]
+
+export interface PostListActivity {
+  movedPostId: number
+  order: PostListOrder
+}
+
+export type PostAction = {
+  movedPostId: number
+  timestamp: string
+  from: number
+  to: number
+}
