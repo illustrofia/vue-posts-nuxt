@@ -4,11 +4,12 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/eslint-module',
     '@pinia/nuxt',
+    'nuxt-svgo',
     [
       '@nuxtjs/google-fonts',
       {
         families: {
-          Inter: [400, 500, 600, 700]
+          Inter: [300, 400, 500, 600, 700]
         }
       }
     ]

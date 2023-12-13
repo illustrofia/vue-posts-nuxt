@@ -8,8 +8,8 @@
         class="flex items-center gap-2 p-2"
       >
         <span
-          >Moved post {{ postAction.movedPostId }} from index {{ postAction.from }} to index
-          {{ postAction.to }}</span
+          >Moved post {{ postAction.movedPostId }} from index
+          {{ postAction.from }} to index {{ postAction.to }}</span
         >
         <button
           class="bg-green-300 text-blue-900 p-2 rounded"

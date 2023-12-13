@@ -1,27 +1,34 @@
 <template>
-  <div>
-    <h2>Sortable Post List</h2>
+  <div class="flex flex-col gap-4">
+    <h2 class="font-medium text-xl">Sortable Post List</h2>
 
     <span v-if="pending">Loading...</span>
 
     <span v-if="error">Error when loading posts: {{ error.message }}</span>
 
-    <ul v-if="!pending && !error" class="list-none flex flex-col gap-4">
+    <ul v-if="!pending && !error" class="flex flex-col gap-4">
       <li
         v-for="post in postListOrdered"
         :key="post.id"
-        class="flex justify-between py-4 px-2 w-64"
+        class="flex justify-between py-4 px-2 w-64 items-center h-16"
       >
-        <h3>Post {{ post.id }}</h3>
-        <div class="flex flex-col gap-1">
-          <span v-if="postListOrdered.indexOf(post) !== 0" @click="() => movePost(post.id, 'up')"
-            >move up</span
+        <h3 class="font-thin">Post {{ post.id }}</h3>
+        <div class="flex flex-col justify-between h-full">
+          <span
+            v-if="postListOrdered.indexOf(post) !== 0"
+            class="p-1 cursor-pointer"
+            @click="() => movePost(post.id, 'up')"
           >
+            <IconChevronUp class="max-h-2" />
+          </span>
+
           <span
             v-if="postListOrdered.indexOf(post) !== postListOrdered.length - 1"
+            class="p-1 cursor-pointer"
             @click="() => movePost(post.id, 'down')"
-            >move down</span
           >
+            <IconChevronDown class="max-h-2" />
+          </span>
         </div>
       </li>
     </ul>
@@ -32,6 +39,8 @@
 import type { Post } from '~/@types'
 import { removeUndefined } from '~/@utils'
 import { usePostActivityStore } from '~/store'
+import IconChevronUp from '~/assets/icons/chevron-up.svg'
+import IconChevronDown from '~/assets/icons/chevron-down.svg'
 
 const store = usePostActivityStore()
 
@@ -82,7 +91,11 @@ const movePost = (postId: number, direction: 'up' | 'down') => {
 
   const newPostIdListOrder = [...store.latestPostIdListOrder]
   newPostIdListOrder.splice(index, 1)
-  newPostIdListOrder.splice(direction === 'up' ? index - 1 : index + 1, 0, postId)
+  newPostIdListOrder.splice(
+    direction === 'up' ? index - 1 : index + 1,
+    0,
+    postId
+  )
 
   store.addPostIdListOrderToHistory(postId, newPostIdListOrder)
 }
