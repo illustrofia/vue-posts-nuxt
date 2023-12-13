@@ -38,5 +38,7 @@ defineProps<{
   isLast: boolean
 }>()
 
-defineEmits(['move-post'])
+defineEmits<{
+  (e: 'move-post', postId: number, direction: 'up' | 'down'): void
+}>()
 </script>

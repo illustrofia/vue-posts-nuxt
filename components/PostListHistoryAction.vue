@@ -28,5 +28,7 @@ defineProps<{
   isLast: boolean
 }>()
 
-defineEmits(['time-travel'])
+defineEmits<{
+  (e: 'time-travel', timestamp: string): void
+}>()
 </script>
