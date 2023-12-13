@@ -26,7 +26,6 @@ defineProps<{
   postAction: PostAction
   isFirst: boolean
   isLast: boolean
-  onTimeTravel: (timestamp: string) => void
 }>()
 
 defineEmits(['time-travel'])
