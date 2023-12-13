@@ -2,18 +2,7 @@
   <div class="flex flex-col gap-4 flex-grow">
     <h2 class="font-medium text-xl text-white">Sortable Post List</h2>
 
-    <!-- TODO: style the loading and error texts -->
-    <span v-if="pending" class="text-white">Loading...</span>
-    <span v-else-if="error" class="text-white"
-      >Error when loading posts: {{ error.message }}</span
-    >
-
-    <TransitionGroup
-      v-show="!pending && !error"
-      tag="ul"
-      name="post-list"
-      class="flex flex-col gap-4"
-    >
+    <TransitionGroup tag="ul" name="post-list" class="flex flex-col gap-4">
       <PostListItem
         v-for="post in postListOrdered"
         :key="post.id"
@@ -33,26 +22,12 @@ import { usePostStore } from '~/store'
 
 const store = usePostStore()
 
-// Fetch posts and store them in a reactive state
-const {
-  data: fetchedPostList,
-  pending,
-  error
-} = useLazyFetch<Post[]>('https://jsonplaceholder.typicode.com/posts', {
-  server: false,
-  transform: (data) => data.slice(0, 5)
-})
-watch(fetchedPostList, (fetchedPostList) => {
-  if (!fetchedPostList) {
-    return
-  }
-  const initialPostListOrder = fetchedPostList.map((post) => post.id)
-  store.addPostIdListOrderToHistory(0, initialPostListOrder)
-})
+const props = defineProps<{
+  postList: Post[]
+}>()
 
-// compute posts based on latestPostListOrder
 const postListOrdered = computed(() => {
-  const posts = fetchedPostList.value
+  const posts = props.postList
   if (!store.latestPostIdListOrder || !posts || posts.length === 0) {
     return []
   }

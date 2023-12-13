@@ -1,15 +1,6 @@
 <template>
   <div class="min-h-full w-screen font-body purple-background">
-    <div
-      class="flex gap-10 p-10 flex-col md:flex-row md:justify-center md:items-start sm:gap-15 xl:gap-20"
-    >
-      <div class="basis-1/3 max-w-md">
-        <PostList />
-      </div>
-      <div class="basis-1/3 max-w-md">
-        <PostListHistory />
-      </div>
-    </div>
+    <ThePostSection />
   </div>
 </template>
 
