@@ -15,7 +15,7 @@
       <li
         v-for="post in postListOrdered"
         :key="post.id"
-        class="flex justify-between py-2 px-2 w-72 items-center h-16 shadow-md hover:shadow-lg transition-all border border-slate-200 rounded"
+        class="flex justify-between py-2 px-2 w-72 items-center h-16 shadow-md transition-all border border-slate-100 rounded hover:shadow-lg hover:border-slate-200"
       >
         <h3 class="font-thin text-sm">Post {{ post.id }}</h3>
         <div
@@ -27,21 +27,21 @@
               : 'justify-center'
           "
         >
-          <span
+          <button
             v-if="postListOrdered.indexOf(post) !== 0"
-            class="p-1 cursor-pointer"
+            class="p-1 cursor-pointer transition-all hover:scale-125 active:scale-150"
             @click="() => movePost(post.id, 'up')"
           >
             <IconChevronUp class="max-h-2" />
-          </span>
+          </button>
 
-          <span
+          <button
             v-if="postListOrdered.indexOf(post) !== postListOrdered.length - 1"
-            class="p-1 cursor-pointer"
+            class="p-1 cursor-pointer transition-all hover:scale-125 active:scale-150"
             @click="() => movePost(post.id, 'down')"
           >
             <IconChevronDown class="max-h-2" />
-          </span>
+          </button>
         </div>
       </li>
     </TransitionGroup>
