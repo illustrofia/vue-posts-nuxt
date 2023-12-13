@@ -9,46 +9,19 @@
     >
 
     <TransitionGroup
-      v-if="!pending && !error"
+      v-show="!pending && !error"
       tag="ul"
       name="post-list"
       class="flex flex-col gap-4"
     >
-      <li
+      <PostListItem
         v-for="post in postListOrdered"
         :key="post.id"
-        class="flex justify-between py-2 px-2 items-center h-16 drop-shadow-md transition-all border border-slate-100 rounded hover:drop-shadow-lg hover:border-slate-200 bg-white"
-      >
-        <h3 class="font-thin text-sm">Post {{ post.id }}</h3>
-        <div
-          :class="{
-            'flex flex-col h-full': true,
-            'justify-between':
-              postListOrdered.indexOf(post) !== 0 &&
-              postListOrdered.indexOf(post) !== postListOrdered.length - 1,
-            'justify-center': !(
-              postListOrdered.indexOf(post) !== 0 &&
-              postListOrdered.indexOf(post) !== postListOrdered.length - 1
-            )
-          }"
-        >
-          <button
-            v-if="postListOrdered.indexOf(post) !== 0"
-            class="p-1 cursor-pointer transition-all hover:scale-125 active:scale-150"
-            @click="() => movePost(post.id, 'up')"
-          >
-            <IconChevronUp class="max-h-2" />
-          </button>
-
-          <button
-            v-if="postListOrdered.indexOf(post) !== postListOrdered.length - 1"
-            class="p-1 cursor-pointer transition-all hover:scale-125 active:scale-150"
-            @click="() => movePost(post.id, 'down')"
-          >
-            <IconChevronDown class="max-h-2" />
-          </button>
-        </div>
-      </li>
+        :post="post"
+        :is-first="postListOrdered.indexOf(post) === 0"
+        :is-last="postListOrdered.indexOf(post) === postListOrdered.length - 1"
+        @move-post="movePost"
+      />
     </TransitionGroup>
   </div>
 </template>
@@ -57,8 +30,6 @@
 import type { Post } from '~/@types'
 import { removeUndefined } from '~/@utils'
 import { usePostStore } from '~/store'
-import IconChevronUp from '~/assets/icons/chevron-up.svg'
-import IconChevronDown from '~/assets/icons/chevron-down.svg'
 
 const store = usePostStore()
 
