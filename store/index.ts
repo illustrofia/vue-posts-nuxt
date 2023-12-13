@@ -1,1 +1,1 @@
-export * from './postActivityStore'
+export * from './postStore'

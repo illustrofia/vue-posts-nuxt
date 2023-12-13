@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePostActivityStore } from '~/store'
+import { usePostStore } from '~/store'
 
-const store = usePostActivityStore()
+const store = usePostStore()
 </script>

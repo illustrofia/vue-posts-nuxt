@@ -56,11 +56,11 @@
 <script setup lang="ts">
 import type { Post } from '~/@types'
 import { removeUndefined } from '~/@utils'
-import { usePostActivityStore } from '~/store'
+import { usePostStore } from '~/store'
 import IconChevronUp from '~/assets/icons/chevron-up.svg'
 import IconChevronDown from '~/assets/icons/chevron-down.svg'
 
-const store = usePostActivityStore()
+const store = usePostStore()
 
 // Fetch posts and store them in a reactive state
 const {

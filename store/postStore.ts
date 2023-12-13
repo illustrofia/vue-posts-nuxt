@@ -7,7 +7,7 @@ interface State {
   }
 }
 
-export const usePostActivityStore = defineStore('user', {
+export const usePostStore = defineStore('user', {
   state: (): State => {
     return {
       postListActivityHistory: {}
