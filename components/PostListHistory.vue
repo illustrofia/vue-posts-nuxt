@@ -16,7 +16,7 @@
         name="activity-history"
       >
         <!-- TODO: animate list item leave -->
-        <PostHistoryAction
+        <PostListHistoryAction
           v-for="postAction in store.postActionHistory"
           :key="postAction.timestamp"
           :post-action="postAction"
