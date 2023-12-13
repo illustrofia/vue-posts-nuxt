@@ -1,7 +1,8 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <h2 class="font-medium text-xl">Sortable Post List</h2>
+  <div class="flex flex-col gap-4 flex-grow">
+    <h2 class="font-medium text-xl text-white">Sortable Post List</h2>
 
+    <!-- TODO: style the loading and error texts -->
     <span v-if="pending">Loading...</span>
 
     <span v-if="error">Error when loading posts: {{ error.message }}</span>
@@ -15,17 +16,20 @@
       <li
         v-for="post in postListOrdered"
         :key="post.id"
-        class="flex justify-between py-2 px-2 w-72 items-center h-16 shadow-md transition-all border border-slate-100 rounded hover:shadow-lg hover:border-slate-200"
+        class="flex justify-between py-2 px-2 items-center h-16 drop-shadow-md transition-all border border-slate-100 rounded hover:drop-shadow-lg hover:border-slate-200 bg-white"
       >
         <h3 class="font-thin text-sm">Post {{ post.id }}</h3>
         <div
-          class="flex flex-col h-full"
-          :class="
-            postListOrdered.indexOf(post) !== 0 &&
-            postListOrdered.indexOf(post) !== postListOrdered.length - 1
-              ? 'justify-between'
-              : 'justify-center'
-          "
+          :class="{
+            'flex flex-col h-full': true,
+            'justify-between':
+              postListOrdered.indexOf(post) !== 0 &&
+              postListOrdered.indexOf(post) !== postListOrdered.length - 1,
+            'justify-center': !(
+              postListOrdered.indexOf(post) !== 0 &&
+              postListOrdered.indexOf(post) !== postListOrdered.length - 1
+            )
+          }"
         >
           <button
             v-if="postListOrdered.indexOf(post) !== 0"
