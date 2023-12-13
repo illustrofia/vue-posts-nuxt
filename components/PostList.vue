@@ -3,9 +3,10 @@
     <h2 class="font-medium text-xl text-white">Sortable Post List</h2>
 
     <!-- TODO: style the loading and error texts -->
-    <span v-if="pending">Loading...</span>
-
-    <span v-if="error">Error when loading posts: {{ error.message }}</span>
+    <span v-if="pending" class="text-white">Loading...</span>
+    <span v-else-if="error" class="text-white"
+      >Error when loading posts: {{ error.message }}</span
+    >
 
     <TransitionGroup
       v-if="!pending && !error"

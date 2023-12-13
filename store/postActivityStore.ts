@@ -48,7 +48,10 @@ export const usePostActivityStore = defineStore('user', {
   },
   actions: {
     addPostIdListOrderToHistory(movedPost: number, order: PostListOrder) {
-      this.postListActivityHistory[Date.now().toString()] = { movedPostId: movedPost, order }
+      this.postListActivityHistory[Date.now().toString()] = {
+        movedPostId: movedPost,
+        order
+      }
     },
     revertToPostIdListOrder(orderTimestamp: string) {
       const keys = Object.keys(this.postListActivityHistory)
