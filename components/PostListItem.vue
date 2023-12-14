@@ -2,7 +2,7 @@
   <li
     class="flex justify-between py-2 px-2 items-center h-16 drop-shadow-md transition-all border border-slate-100 rounded hover:drop-shadow-lg hover:border-slate-200 bg-white group"
   >
-    <h3 class="text-sm">Post {{ post.id }}</h3>
+    <span class="text-sm"><slot /></span>
     <div
       class="flex flex-col h-full justify-between group-first:justify-center group-last:justify-center"
     >

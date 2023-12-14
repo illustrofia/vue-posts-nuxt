@@ -8,7 +8,8 @@
         :key="post.id"
         :post="post"
         @move-post="movePost"
-      />
+        >Post {{ post.id }}</PostListItem
+      >
     </TransitionGroup>
   </div>
 </template>
