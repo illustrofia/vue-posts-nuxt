@@ -7,8 +7,6 @@
         v-for="post in postListOrdered"
         :key="post.id"
         :post="post"
-        :is-first="postListOrdered.indexOf(post) === 0"
-        :is-last="postListOrdered.indexOf(post) === postListOrdered.length - 1"
         @move-post="movePost"
       />
     </TransitionGroup>

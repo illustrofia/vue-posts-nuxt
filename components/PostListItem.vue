@@ -1,24 +1,20 @@
 <template>
   <li
-    class="flex justify-between py-2 px-2 items-center h-16 drop-shadow-md transition-all border border-slate-100 rounded hover:drop-shadow-lg hover:border-slate-200 bg-white"
+    class="flex justify-between py-2 px-2 items-center h-16 drop-shadow-md transition-all border border-slate-100 rounded hover:drop-shadow-lg hover:border-slate-200 bg-white group"
   >
-    <h3 class="font-thin text-sm">Post {{ post.id }}</h3>
+    <h3 class="text-sm">Post {{ post.id }}</h3>
     <div
-      :class="{
-        'flex flex-col h-full': true,
-        'justify-between': !(isFirst || isLast),
-        'justify-center': isFirst || isLast
-      }"
+      class="flex flex-col h-full justify-between group-first:justify-center group-last:justify-center"
     >
       <PostListItemActionButton
-        v-show="!isFirst"
+        class="group-first:hidden"
         @click="$emit('move-post', post.id, 'up')"
       >
         <IconChevronUp class="max-h-2" />
       </PostListItemActionButton>
 
       <PostListItemActionButton
-        v-show="!isLast"
+        class="group-last:hidden"
         @click="$emit('move-post', post.id, 'down')"
       >
         <IconChevronDown class="max-h-2" />
@@ -34,8 +30,6 @@ import IconChevronUp from '~/assets/icons/chevron-up.svg'
 
 defineProps<{
   post: Post
-  isFirst: boolean
-  isLast: boolean
 }>()
 
 defineEmits<{
