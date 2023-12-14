@@ -8,14 +8,14 @@
     >
       <PostListItemActionButton
         class="group-first:hidden"
-        @click="$emit('move-post', post.id, 'up')"
+        @click="$emit('click-arrow-up', post)"
       >
         <IconChevronUp class="max-h-2" />
       </PostListItemActionButton>
 
       <PostListItemActionButton
         class="group-last:hidden"
-        @click="$emit('move-post', post.id, 'down')"
+        @click="$emit('click-arrow-down', post)"
       >
         <IconChevronDown class="max-h-2" />
       </PostListItemActionButton>
@@ -33,6 +33,7 @@ defineProps<{
 }>()
 
 defineEmits<{
-  (e: 'move-post', postId: number, direction: 'up' | 'down'): void
+  (e: 'click-arrow-up', post: Post): void
+  (e: 'click-arrow-down', post: Post): void
 }>()
 </script>
