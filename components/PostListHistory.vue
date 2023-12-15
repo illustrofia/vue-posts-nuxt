@@ -6,9 +6,7 @@
       <h2 class="font-medium text-lg">List of actions commited</h2>
     </div>
     <div class="bg-slate-100 p-4 h-full">
-      <span v-if="store.postActionHistory.length === 0">
-        No actions available
-      </span>
+      <span v-if="activityHistory.length === 0"> No actions available</span>
 
       <TransitionGroup
         class="flex flex-col drop-shadow-md rounded"
@@ -17,15 +15,15 @@
       >
         <!-- TODO: animate list item leave -->
         <PostListHistoryAction
-          v-for="postAction in store.postActionHistory"
-          :key="postAction.timestamp"
+          v-for="(postAction, index) in activityHistory"
+          :key="index"
           :post-action="postAction"
-          :is-first="store.postActionHistory.indexOf(postAction) === 0"
-          :is-last="
-            store.postActionHistory.indexOf(postAction) ===
-            store.postActionHistory.length - 1
+          @click-time-travel="
+            () =>
+              postListOrderHistory.deleteFromIndex(
+                activityHistory.length - index - 1
+              )
           "
-          @time-travel="store.revertToPostIdListOrder"
         />
       </TransitionGroup>
     </div>
@@ -33,7 +31,10 @@
 </template>
 
 <script setup lang="ts">
-import { usePostStore } from '~/store'
+import { usePostListHistory } from '~/store'
 
-const store = usePostStore()
+const postListOrderHistory = usePostListHistory()
+const activityHistory = computed(
+  () => postListOrderHistory.activityHistory.activityHistory
+)
 </script>

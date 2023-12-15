@@ -8,14 +8,14 @@
     >
       <PostListItemActionButton
         class="group-first:hidden"
-        @click="$emit('click-arrow-up', post)"
+        @click="$emit('click-arrow-up')"
       >
         <IconChevronUp class="max-h-2" />
       </PostListItemActionButton>
 
       <PostListItemActionButton
         class="group-last:hidden"
-        @click="$emit('click-arrow-down', post)"
+        @click="$emit('click-arrow-down')"
       >
         <IconChevronDown class="max-h-2" />
       </PostListItemActionButton>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Post } from '~/@types'
+import type { Post } from '~/types'
 import IconChevronDown from '~/assets/icons/chevron-down.svg'
 import IconChevronUp from '~/assets/icons/chevron-up.svg'
 
@@ -33,7 +33,7 @@ defineProps<{
 }>()
 
 defineEmits<{
-  (e: 'click-arrow-up', post: Post): void
-  (e: 'click-arrow-down', post: Post): void
+  (e: 'click-arrow-up'): void
+  (e: 'click-arrow-down'): void
 }>()
 </script>
