@@ -5,7 +5,7 @@ export interface Post {
   body: string
 }
 
-export type PostListOrderMoveTuple = [number, number]
+export type PostMove = [from: number, to: number]
 
 export type PostListOrder = number[]
 

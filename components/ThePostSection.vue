@@ -42,17 +42,14 @@ const {
   transform: (data) => data.slice(0, 5)
 })
 
-watch(
-  () => postList.value,
-  (postList) => {
-    if (!postList || postListHistory.initialOrder) {
-      return
-    }
-    postListHistory.setInitialOrder(postList.map((post) => post.id))
+watch(postList, (postList) => {
+  if (!postList || postListHistory.initialOrder) {
+    return
   }
-)
+  postListHistory.setInitialOrder(postList.map((post) => post.id))
+})
 
-const getSortedPostList = (
+const getPostListOrdered = (
   postList: Post[] | null,
   postListOrder: number[] | undefined
 ) => {
@@ -68,11 +65,14 @@ const getSortedPostList = (
 }
 
 const postListOrdered = computed(() =>
-  getSortedPostList(postList.value, postListHistory.activityHistory.latestOrder)
+  getPostListOrdered(
+    postList.value,
+    postListHistory.moveActionsAndLatestOrder.latestOrder
+  )
 )
 
 const movePost = (movedPostIndex: number, direction: 'up' | 'down') => {
-  postListHistory.addMoveAction([
+  postListHistory.addMove([
     movedPostIndex,
     direction === 'up' ? movedPostIndex - 1 : movedPostIndex + 1
   ])

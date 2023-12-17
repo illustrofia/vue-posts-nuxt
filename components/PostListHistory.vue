@@ -6,7 +6,7 @@
       <h2 class="font-medium text-lg">List of actions commited</h2>
     </div>
     <div class="bg-slate-100 p-4 h-full">
-      <span v-if="activityHistory.length === 0"> No actions available</span>
+      <span v-if="postMoveActions.length === 0"> No actions available</span>
 
       <TransitionGroup
         class="flex flex-col drop-shadow-md rounded"
@@ -15,13 +15,13 @@
       >
         <!-- TODO: animate list item leave -->
         <PostListHistoryAction
-          v-for="(postAction, index) in activityHistory"
+          v-for="(postAction, index) in postMoveActions"
           :key="index"
-          :post-action="postAction"
+          :post-move-action="postAction"
           @click-time-travel="
             () =>
               postListOrderHistory.deleteFromIndex(
-                activityHistory.length - index - 1
+                postMoveActions.length - index - 1
               )
           "
         />
@@ -34,7 +34,7 @@
 import { usePostListHistory } from '~/store'
 
 const postListOrderHistory = usePostListHistory()
-const activityHistory = computed(
-  () => postListOrderHistory.activityHistory.activityHistory
+const postMoveActions = computed(
+  () => postListOrderHistory.moveActionsAndLatestOrder.postMoveActions
 )
 </script>
