@@ -35,6 +35,6 @@ import { usePostListHistory } from '~/store'
 
 const postListOrderHistory = usePostListHistory()
 const postMoveActions = computed(
-  () => postListOrderHistory.moveActionsAndLatestOrder.postMoveActions
+  () => postListOrderHistory.latestOrderAndMoveActions.postMoveActions
 )
 </script>

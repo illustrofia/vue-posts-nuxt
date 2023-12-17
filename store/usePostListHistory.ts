@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { PostMove } from '~/types'
-import { getPostMoveActionsAndLatestOrder } from '~/utils'
+import { getLatestOrderAndPostMoveActions } from '~/utils'
 
 interface State {
   initialOrder: number[] | undefined
@@ -19,10 +19,10 @@ export const usePostListHistory = defineStore('postList', {
     moves(state) {
       return state.stack
     },
-    moveActionsAndLatestOrder(state) {
+    latestOrderAndMoveActions(state) {
       // we put these two together because the latest order
       // is the result of applying all the moves to the initial order
-      return getPostMoveActionsAndLatestOrder(state.initialOrder, state.stack)
+      return getLatestOrderAndPostMoveActions(state.initialOrder, state.stack)
     }
   },
   actions: {

@@ -1,6 +1,6 @@
 import type { PostMove, PostMoveAction } from '~/types'
 
-export const getPostMoveActionsAndLatestOrder = (
+export const getLatestOrderAndPostMoveActions = (
   initialOrder: number[] | undefined,
   postListMoves: PostMove[]
 ) => {

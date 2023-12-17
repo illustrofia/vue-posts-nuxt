@@ -67,7 +67,7 @@ const getPostListOrdered = (
 const postListOrdered = computed(() =>
   getPostListOrdered(
     postList.value,
-    postListHistory.moveActionsAndLatestOrder.latestOrder
+    postListHistory.latestOrderAndMoveActions.latestOrder
   )
 )
 
