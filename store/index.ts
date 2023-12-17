@@ -1,1 +1,1 @@
-export * from './usePostListHistory'
+export * from './postListHistory'
