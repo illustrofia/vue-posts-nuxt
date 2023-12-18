@@ -11,6 +11,7 @@ export type PostListOrder = number[]
 
 export type PostMoveAction = {
   from: number
+  index: number
   movedPostId: number
   to: number
 }

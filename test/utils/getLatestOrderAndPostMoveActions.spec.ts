@@ -22,9 +22,9 @@ describe('getLatestOrderAndPostMoveActions', () => {
     const result = getLatestOrderAndPostMoveActions(initialOrder, moves)
     expect(result.latestOrder).toEqual([3, 1, 2, 5, 4])
     expect(result.postMoveActions).toEqual([
-      { from: 1, movedPostId: 3, to: 0 },
-      { from: 3, movedPostId: 4, to: 4 },
-      { from: 1, movedPostId: 2, to: 2 }
+      { from: 1, index: 2, movedPostId: 3, to: 0 },
+      { from: 3, index: 1, movedPostId: 4, to: 4 },
+      { from: 1, index: 0, movedPostId: 2, to: 2 }
     ])
   })
 })

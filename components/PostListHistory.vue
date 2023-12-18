@@ -11,16 +11,16 @@
       <TransitionGroup
         class="flex flex-col rounded drop-shadow-md"
         tag="ul"
-        name="activity-history"
+        name="history-action"
       >
-        <!-- TODO: animate list item leave -->
         <PostListHistoryAction
           v-for="(postAction, index) in postMoveActions"
-          :key="index"
+          :key="postAction.index"
           :post-move-action="postAction"
           @click-time-travel="
             () =>
               postListOrderHistory.deleteFromIndex(
+                // TODO: fix line below; this is a bit unclear
                 postMoveActions.length - index - 1
               )
           "
@@ -38,3 +38,22 @@ const postMoveActions = computed(
   () => postListOrderHistory.latestOrderAndMoveActions.postMoveActions
 )
 </script>
+
+<style scoped>
+.history-action-enter-active,
+.history-action-leave-active {
+  transition: all 0.15s ease-in;
+}
+
+.history-action-enter-from,
+.history-action-leave-to {
+  opacity: 0;
+  transform: translateX(25%);
+}
+
+.history-action-enter-to,
+.history-action-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+</style>
