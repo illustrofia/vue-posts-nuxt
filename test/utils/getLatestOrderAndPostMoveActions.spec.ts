@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest'
-import { getLatestOrderAndPostMoveActions } from '~/utils'
+import { describe, expect, it } from 'vitest'
+
 import type { PostListOrder, PostMove } from '~/types'
+
+import { getLatestOrderAndPostMoveActions } from '~/utils'
 
 describe('getLatestOrderAndPostMoveActions', () => {
   it('returns an empty array for the latest order and no move actions if the initial order is undefined', () => {
@@ -20,9 +22,9 @@ describe('getLatestOrderAndPostMoveActions', () => {
     const result = getLatestOrderAndPostMoveActions(initialOrder, moves)
     expect(result.latestOrder).toEqual([3, 1, 2, 5, 4])
     expect(result.postMoveActions).toEqual([
-      { movedPostId: 3, from: 1, to: 0 },
-      { movedPostId: 4, from: 3, to: 4 },
-      { movedPostId: 2, from: 1, to: 2 }
+      { from: 1, movedPostId: 3, to: 0 },
+      { from: 3, movedPostId: 4, to: 4 },
+      { from: 1, movedPostId: 2, to: 2 }
     ])
   })
 })

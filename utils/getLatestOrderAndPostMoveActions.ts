@@ -8,8 +8,8 @@ export const getLatestOrderAndPostMoveActions = (
 
   if (!initialOrder) {
     return {
-      postMoveActions: [],
-      latestOrder: []
+      latestOrder: [],
+      postMoveActions: []
     }
   }
 
@@ -21,11 +21,11 @@ export const getLatestOrderAndPostMoveActions = (
     latestOrder.splice(to, 0, movedPostId)
 
     postMoveActions.unshift({
-      movedPostId,
       from,
+      movedPostId,
       to
     })
   })
 
-  return { postMoveActions, latestOrder }
+  return { latestOrder, postMoveActions }
 }

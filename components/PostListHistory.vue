@@ -1,15 +1,15 @@
 <template>
   <div
-    class="flex flex-col drop-shadow-md rounded border border-slate-100 bg-white md:min-w-[27.5rem]"
+    class="flex flex-col rounded border border-slate-100 bg-white drop-shadow-md md:min-w-[27.5rem]"
   >
     <div class="p-4">
-      <h2 class="font-medium text-lg">List of actions commited</h2>
+      <h2 class="text-lg font-medium">List of actions commited</h2>
     </div>
-    <div class="bg-slate-100 p-4 h-full">
+    <div class="h-full bg-slate-100 p-4">
       <span v-if="postMoveActions.length === 0"> No actions available</span>
 
       <TransitionGroup
-        class="flex flex-col drop-shadow-md rounded"
+        class="flex flex-col rounded drop-shadow-md"
         tag="ul"
         name="activity-history"
       >

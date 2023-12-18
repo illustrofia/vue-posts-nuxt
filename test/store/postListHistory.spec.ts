@@ -1,7 +1,9 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
-import { usePostListHistory } from '~/store'
+import { createPinia, setActivePinia } from 'pinia'
+import { beforeEach, describe, expect, it } from 'vitest'
+
 import type { PostMove } from '~/types'
+
+import { usePostListHistory } from '~/store'
 
 describe('usePostListHistory', () => {
   beforeEach(() => {

@@ -1,9 +1,9 @@
 export interface Stack<T> {
-  push: (value: T) => void
-  pop: () => T | undefined
-  peek: () => T | undefined
-  size: () => number
   deleteFromIndex: (index: number) => void
+  peek: () => T | undefined
+  pop: () => T | undefined
+  push: (value: T) => void
+  size: () => number
   toArray: () => T[]
 }
 
@@ -35,11 +35,11 @@ export const useStack = <T>(): Stack<T> => {
   }
 
   return {
-    push,
-    pop,
-    peek,
-    size,
     deleteFromIndex,
+    peek,
+    pop,
+    push,
+    size,
     toArray
   }
 }

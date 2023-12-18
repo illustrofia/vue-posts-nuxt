@@ -8,12 +8,12 @@ module.exports = {
     './app.vue',
     './error.vue'
   ],
+  plugins: [],
   theme: {
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif']
       }
     }
-  },
-  plugins: []
+  }
 }

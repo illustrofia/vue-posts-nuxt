@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-full w-screen font-body purple-background">
+  <div class="purple-background min-h-full w-screen font-body">
     <ThePostSection />
   </div>
 </template>

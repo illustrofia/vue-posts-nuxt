@@ -1,8 +1,8 @@
 export interface Post {
-  userId: number
+  body: string
   id: number
   title: string
-  body: string
+  userId: number
 }
 
 export type PostMove = [from: number, to: number]
@@ -10,7 +10,7 @@ export type PostMove = [from: number, to: number]
 export type PostListOrder = number[]
 
 export type PostMoveAction = {
-  movedPostId: number
   from: number
+  movedPostId: number
   to: number
 }

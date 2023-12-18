@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [
@@ -9,13 +9,13 @@ export default defineConfig({
       imports: ['vue']
     })
   ],
-  test: {
-    globals: true,
-    environment: 'jsdom'
-  },
   resolve: {
     alias: {
       '~/': `/`
     }
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true
   }
 })
