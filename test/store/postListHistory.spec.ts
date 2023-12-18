@@ -1,4 +1,3 @@
-// usePostListHistory.spec.ts
 import { describe, it, expect, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { usePostListHistory } from '~/store'
@@ -6,14 +5,13 @@ import type { PostMove } from '~/types'
 
 describe('usePostListHistory', () => {
   beforeEach(() => {
-    // Resets Pinia store before each test
     setActivePinia(createPinia())
   })
 
   it('initializes with the correct default state', () => {
     const postListHistory = usePostListHistory()
     expect(postListHistory.initialOrder).toBeUndefined()
-    expect(postListHistory.stack).toEqual([])
+    expect(postListHistory.moves).toEqual([])
   })
 
   it('sets the initial order correctly', () => {
@@ -27,8 +25,8 @@ describe('usePostListHistory', () => {
     const postListHistory = usePostListHistory()
     const move: PostMove = [0, 1]
     postListHistory.addMove(move)
-    expect(postListHistory.stack).toHaveLength(1)
-    expect(postListHistory.stack[0]).toEqual(move)
+    expect(postListHistory.moves).toHaveLength(1)
+    expect(postListHistory.moves[0]).toEqual(move)
   })
 
   it('deletes from the stack starting at a specific index', () => {
@@ -37,7 +35,7 @@ describe('usePostListHistory', () => {
     postListHistory.addMove([0, 1])
     postListHistory.addMove([1, 2])
     postListHistory.deleteFromIndex(1)
-    expect(postListHistory.stack).toHaveLength(1)
+    expect(postListHistory.moves).toHaveLength(1)
   })
 
   it('handles a sequence of moves and time travel', () => {
@@ -61,7 +59,7 @@ describe('usePostListHistory', () => {
       3, 1, 2, 5, 4
     ])
 
-    // Simulate time travel by deleting the second action (index 1, since arrays are zero-indexed)
+    // Simulate time travel by deleting the second action
     postListHistory.deleteFromIndex(1)
 
     // After time travel, the store should reflect the state before the second move

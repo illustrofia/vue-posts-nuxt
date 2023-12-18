@@ -30,6 +30,7 @@
     "nuxt-svgo": "^3.7.0",
     "prettier": "^3.1.1",
     "typescript": "^5.3.3",
+    "unplugin-auto-import": "^0.17.2",
     "vitest": "^1.0.4",
     "vue": "^3.3.10",
     "vue-router": "^4.2.5",
