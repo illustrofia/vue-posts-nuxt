@@ -48,7 +48,7 @@ const postMoveActions = computed(
 .history-action-enter-from,
 .history-action-leave-to {
   opacity: 0;
-  transform: translateX(25%);
+  transform: translateX(10%);
 }
 
 .history-action-enter-to,
